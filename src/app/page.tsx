@@ -1,9 +1,30 @@
-import { Button } from "@/components/ui/button";
+import BannerSignUp from "@/components/organisms/BannerSignUp";
+import Category from "@/components/organisms/Category";
+import Clients from "@/components/organisms/Clients";
+import FeatureJob from "@/components/organisms/FeatureJob";
+import Hero from "@/components/organisms/Hero";
+import LatestJobs from "@/components/organisms/LatestJobs";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      <Button >Submit</Button>
-    </div>
+    <>
+      <div className="absolute w-2/3 h-screen top-0 right-0 -z-10">
+        <Image src="/images/pattern.png" alt="/images/pattern.png" fill />
+      </div>
+      <div className="px-32 mb-10">
+        <Hero />
+
+        <Clients />
+
+        <Category />
+
+        <BannerSignUp />
+
+        <FeatureJob />
+
+        <LatestJobs />
+      </div>
+    </>
   );
 }
