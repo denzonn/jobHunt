@@ -11,8 +11,8 @@ const JobItem: FC<JobItemProps> = ({
   name,
   type,
   location,
-  description,
-  categories,
+  desc,
+  category,
 }) => {
   return (
     <div className="border border-border p-6 cursor-pointer">
@@ -27,14 +27,15 @@ const JobItem: FC<JobItemProps> = ({
         <div className="text-muted-foreground mb-3">
           {type} . {location}
         </div>
-        <div className="text-muted-foreground h-12 line-clamp-2 text-ellipsis">
-          {description}
-        </div>
+        <div
+          className="text-muted-foreground h-12 line-clamp-2 text-ellipsis"
+          dangerouslySetInnerHTML={{ __html: desc }}
+        />
       </div>
       <div className="space-x-2">
-        {categories.map((item: string, index: number) => (
-          <Badge key={index} className="rounded border-primary bg-primary/5 text-primary">{item}</Badge>
-        ))}
+        <Badge className="rounded border-primary bg-primary/5 text-primary">
+          {category.name}
+        </Badge>
       </div>
     </div>
   );

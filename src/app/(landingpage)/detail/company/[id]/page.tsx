@@ -1,5 +1,7 @@
+import LatestJobs from "@/components/organisms/LatestJobs";
 import { Badge } from "@/components/ui/badge";
-import { FacebookIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { FacebookIcon, InstagramIcon, LinkedinIcon, TwitterIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
@@ -142,6 +144,40 @@ const DetailCompanyPage: FC<DetailCompanyPageProps> = () => {
             <Badge>Html</Badge>
           </div>
         </div>
+      </div>
+      <div className="px-32">
+        <Separator />
+        <div className="my-16">
+          <div className="text-3xl font-semibold mb-4">
+            <div className="grid grid-cols-5 gap-5 mt-5">
+              {
+                [0,1,2,3,4].map((item: number, index: number) => (
+                  <div key={index} className="border border-border px-3 py-5">
+                    <div className="w-16 h-16 rounded-full mx-auto bg-gray-300" />
+
+                    <div className="text-center my-4">
+                      <div className="font-semibold text-sm">
+                        Denson
+                      </div>
+                      <div className="text-gray-500 text-xs">Ceo & Co DFounder</div>
+                    </div>
+
+                    <div className="mx-auto w-max">
+                      <div className="inline-flex gap-2">
+                        <InstagramIcon className="w-4 h-4 text-gray-500"/>
+                        <LinkedinIcon className="w-4 h-4 text-gray-500"/>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+        <Separator />
+      </div>
+      <div className="px-32">
+        <LatestJobs/>
       </div>
     </>
   );
