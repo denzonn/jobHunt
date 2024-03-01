@@ -2,7 +2,8 @@ import CompanyCard from "@/components/organisms/CompanyCard";
 import FormFilterDynamic from "@/components/organisms/FormFilterDynamic";
 import FormSearchDynamic from "@/components/organisms/FormSearchDynamic";
 import JobCard from "@/components/organisms/JobCard";
-import { JobType, filterFormType } from "@/types";
+import { Skeleton } from "@/components/ui/skeleton";
+import { filterFormType } from "@/types";
 import Image from "next/image";
 import React, { FC } from "react";
 
@@ -10,7 +11,7 @@ interface ExploreDataContainerProps {
   formFilter: any;
   onSubmitFilter: (val: any) => Promise<void>;
   filterForms: filterFormType[];
-  loading: boolean;
+  isLoading: boolean;
   title: string;
   subtitle: string;
   data: any[];
@@ -21,7 +22,7 @@ const ExploreDataContainer: FC<ExploreDataContainerProps> = ({
   formFilter,
   onSubmitFilter,
   filterForms,
-  loading,
+  isLoading,
   title,
   subtitle,
   data,
@@ -59,6 +60,7 @@ const ExploreDataContainer: FC<ExploreDataContainerProps> = ({
             formFilter={formFilter}
             onSubmitFilter={onSubmitFilter}
             filterForms={filterForms}
+            isLoading={isLoading}
           />
         </div>
         <div className="w-4/5">
@@ -70,28 +72,42 @@ const ExploreDataContainer: FC<ExploreDataContainerProps> = ({
               Showing {data?.length} Results
             </div>
             <div className="">
-              {loading ? (
-                <div>Loading...</div>
-              ) : (
-                <>
-                  {type == "job" ? (
-                    <>
+              {type === "job" ? (
+                isLoading ? (
+                  <div className="space-y-6">
+                    {
+                      [0,1,2].map((item: number) => (
+                        <Skeleton key={item} className="w-full h-[150px]"/>
+                      ))
+                    }
+                  </div>
+                ) : (
+                  <>
                       <div className="grid grid-cols-1 gap-7">
                         {data?.map((item: any, index: number) => (
                           <JobCard key={index} {...item} />
                         ))}
                       </div>
                     </>
-                  ) : (
-                    <>
+                )
+              ) : (
+                isLoading ? (
+                  <div className="grid grid-cols-3 gap-7">
+                    {
+                      [0,1,2,3,4].map((item: number) => (
+                        <Skeleton key={item} className="w-full h-[200px]"/>
+                      ))
+                    }
+                  </div>
+                ) : (
+                  <>
                       <div className="grid grid-cols-3 gap-7">
                         {data?.map((item: any, index: number) => (
                           <CompanyCard key={index} {...item} />
                         ))}
                       </div>
                     </>
-                  )}
-                </>
+                )
               )}
             </div>
           </div>

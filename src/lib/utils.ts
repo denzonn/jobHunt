@@ -50,23 +50,22 @@ export const parsingCategories = (
   return [];
 };
 
-export const parsingJobs = async(
+export const parsingJobs = async (
   data: any,
   isLoading: boolean,
   error: any
 ) => {
   if (!isLoading && !error && data) {
     return await Promise.all(
-      data.map(async(item: any) => {
+      data.map(async (item: any) => {
         let imageName = item.Company?.Companyoverview[0]?.image;
-				let imageUrl;
+        let imageUrl;
 
-				if (imageName) {
-					imageUrl = await supabasePublicUrl(imageName, "company");
-				} else {
-					imageUrl = "/images/company.png";
-				}
-
+        if (imageName) {
+          imageUrl = await supabasePublicUrl(imageName, "company");
+        } else {
+          imageUrl = "/images/company.png";
+        }
 
         const job: JobType = {
           id: item.id,
@@ -81,10 +80,10 @@ export const parsingJobs = async(
           type: item.CategoryJob.name,
           skills: item.requiredSkills,
         };
-  
+
         return job;
       })
-    )
+    );
   }
 
   return [];

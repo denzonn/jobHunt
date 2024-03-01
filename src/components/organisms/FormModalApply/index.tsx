@@ -36,7 +36,7 @@ const FormModalApply: FC<FormModalApplyProps> = () => {
   const onSubmit = (val: z.infer<typeof formApplySchema>) => {};
 
   return (
-    <Dialog>
+    <Dialog sty>
       <DialogTrigger asChild>
         <Button size={"lg"} className="text-lg px-12 py-6">
           Apply

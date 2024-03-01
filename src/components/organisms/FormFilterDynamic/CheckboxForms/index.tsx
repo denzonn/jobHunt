@@ -34,7 +34,7 @@ const CheckboxForms: FC<CheckboxFormsProps> = ({
                 name={name}
                 render={() => (
                   <FormItem className='space-y-5 text-gray-600 mt-5'>
-                    {items.map((item) => (
+                    {items?.map((item) => (
                       <FormField
                         key={item.id}
                         control={formFilter.control}
